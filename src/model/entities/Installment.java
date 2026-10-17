@@ -9,7 +9,7 @@ public class Installment {
 
     private LocalDate dueDate;
     private Double amount;
-    private DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public Installment(LocalDate dueDate, Double amount) {
         this.dueDate = dueDate;
