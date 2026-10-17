@@ -12,6 +12,7 @@ public class ContractService {
     private OlinePaymentService onlinePaymentService;
 
 
+
     public ContractService(OlinePaymentService paymentService) {
         this.onlinePaymentService = paymentService;
     }
@@ -24,14 +25,14 @@ public class ContractService {
         }
 
 
+
         double baseInstallment = contract.getTotalValue() / months;
 
         for (int i = 1; i <= months; i++) {
             LocalDate dueDate = contract.getDate().plusMonths(i);
             Double installmentWithInterest = baseInstallment + onlinePaymentService.interest(baseInstallment, i);
             Double installmentWithFee = installmentWithInterest + onlinePaymentService.paymentFee(installmentWithInterest);
-            Installment installment = new Installment(dueDate, installmentWithFee);
-            contract.getInstallments().add(installment);
+            contract.getInstallments().add(new Installment(dueDate, installmentWithFee));
 
         }
     }
